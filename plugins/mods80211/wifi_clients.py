@@ -91,6 +91,10 @@ class Snarf():
         if proxSess and self.verb > 0 and abs(os.times()[4] - self.lastPrintUpdate) > printFreq:
             logging.info("Sub-plugin %s%s%s currently observing %s%d%s client devices" % (GR,self.fname,G,GR,self.prox.getNumProxs(),G))
             self.lastPrintUpdate = os.times()[4]
+            """ Following code writes out the captures client data as a string to a text file """
+            test_file = open("test.txt", "a")
+            test_file.write(str(proxSess))
+            test_file.close()
 
         data = [("wifi_client_obs",proxSess), ("vendors",vendors), ("wifi_client_ssids", ssid_list)]
         return data
